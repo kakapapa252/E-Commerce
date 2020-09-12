@@ -1,0 +1,30 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+{% block body %}
+    <h2>{{ item.title }}</h2>
+    <p>Date listed : {{ item.listing_date }}
+        <br>
+        Listed by : <em>{{ item.created_by }}</em>
+    </p>
+    {% if user.is_authenticated %}
+    Add to wishlist:<br>
+          <a class="btn-floating waves-effect waves-light red" href="{% url 'add_to_wishlist' item.idx %}"><i class="material-icons">add</i></a>
+    {% endif %}
+    <br> 
+ 
+	    
+	    <ul>
+    		<img class="materialboxed" width="70%" src="{{ item.thumbnail.url|default_if_none:'#' }}">
+    		<br>
+    		<li style="font-size: 20px"><strong>Price</strong> : <em>Rs.{{ item.price }}</em></li><br>
+    		<h4>Details:</h4>
+    		<li>{{ item.summary }}</li>	
+
+		</ul>
+		<br>
+		<br>
+
+
+	
+
+{% endblock %}
